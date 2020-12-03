@@ -1,40 +1,59 @@
 package jm.task.core.jdbc;
 
+import jm.task.core.jdbc.dao.UserDaoHibernateImpl;
+import jm.task.core.jdbc.dao.UserDaoJDBCImpl;
+import jm.task.core.jdbc.model.User;
 import jm.task.core.jdbc.service.UserService;
 import jm.task.core.jdbc.service.UserServiceImpl;
+import org.hibernate.SessionFactory;
+import org.hibernate.internal.SessionFactoryImpl;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.List;
+
+import static java.lang.Integer.valueOf;
 
 public class Main {
 
     private static UserService userService = new UserServiceImpl();
 
 
+
     public static void main(String[] args) throws SQLException {
 
+
+
+
         userService.cleanUsersTable();
-        System.out.println("Таблица очищена");
 
         userService.dropUsersTable();
-        System.out.println("Таблица дропнута");
 
         userService.createUsersTable();
         System.out.println("Таблица создана");
 
-        userService.saveUser("Bob", "Bobovich", (byte) 17);
-        System.out.println("user с именем Bob добавлен в БД");
-        userService.saveUser("Vasya", "Terkin", (byte) 21);
-        System.out.println("user с именем Vasya добавлен в БД");
-        userService.saveUser("Jack", "Gogenov", (byte) 15);
-        System.out.println("user Jack добавлен в БД");
-        userService.saveUser("Angella", "Rahmatovna", (byte) 44);
-        System.out.println("user Angella добавлен в БД");
+        userService.saveUser("Ignat", "Vasilevich", Byte.parseByte("64"));
+        System.out.println("добавлен");
+
+        userService.saveUser("Petya", "Perviy", Byte.parseByte("64"));
+        System.out.println("добавлен");
+
+        userService.saveUser("Iosif", "Stalin", Byte.parseByte("64"));
+        System.out.println("добавлен");
 
         userService.removeUserById(1);
-        System.out.println("Пользователь c id 1 удален");
 
         System.out.println(userService.getAllUsers());
+
+
+
+
+
+
+
+
+
+
     }
 }
